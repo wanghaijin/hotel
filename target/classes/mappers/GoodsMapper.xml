@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.GoodsMapper">
+	<select id="selectGoods" resultType="Goods">
+		select
+		goods_id,
+		goods_name
+		from
+		goods
+		<where>
+			<if test="goodsName != null and goodsName !=''">
+				goods_name=#{goodsName}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertGoods">
+		INSERT INTO goods (
+		goods_name
+
+		)
+		VALUES
+		(
+		#{goods.goodsName}
+
+		);
+
+	</insert>
+
+	<!-- <update id="updateGoods"> UPDATE goods SET goods_amount = #{goodsAmount}, 
+		goods_remain = #{goodsRemain} WHERE goods_id =#{goodsId}; </update> -->
+
+	<!-- <delete id="deleteGoods"> delete from goods where goods_id = #{goodsId}; 
+		</delete> -->
+</mapper>

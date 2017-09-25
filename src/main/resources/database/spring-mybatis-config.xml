@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sqlSessionFactroy" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据库导入-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--mybatis配置导入-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--mapper实现导入-->
+        <property name="mapperLocations" value="classpath:mappers/**/*.xml"/>
+        <!--映射表扫描-->
+        <property name="typeAliasesPackage" value="com.hotel.pojo"/>
+    </bean>
+    <!--接口导入-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.hotel.mapper"/>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.GoodsOrdersMapper">
+
+	<resultMap type="GoodsOrders" id="resultMapOrders" autoMapping="true">
+		<id property="goodsOrdersId" column="goods_orders_id" />
+		<association property="goods" javaType="Goods"
+			autoMapping="true">
+			<id property="goodsId" column="goods_id" />
+			<id property="goodsName" column="goods_name" />
+		</association>
+	</resultMap>
+	<select id="selectGoodsOrders" resultMap="resultMapOrders">
+		SELECT
+		*
+		FROM
+		goods_orders,goods
+		where
+		goods_orders.goods_id=goods.goods_id
+		<if test="goodsId != null and goodsId != ''">
+			and goods_id=#{goodsId} 
+		</if>
+		order by
+		goods_orders_time
+	</select>
+
+	<insert id="insertGoodsOrders">
+		INSERT INTO goods_orders (
+		goods_id,
+		goods_orders_time,
+		goods_orders_amount
+		)
+		VALUES
+		(
+		#{goodsOrders.goodsId},
+		NOW(),
+		#{goodsOrders.goodsOrdersAmount}
+		);
+
+	</insert>
+
+	<delete id="deleteGoodsOrders">
+		DELETE
+		FROM
+		goods_orders
+		WHERE goods_orders_id = #{goodsOrdersId};
+
+	</delete>
+
+</mapper>        
