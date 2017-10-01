@@ -41,28 +41,4 @@ public class GoodsServiceImpl implements GoodsService {
 		return false;
 	}
 
-//	@Override
-//	public boolean updateGoods(String goodsId, String goodsAmount, String goodsRemain) {
-//		// TODO Auto-generated method stub
-//		//更新数据
-//		int changeLine=goodsMapper.updateGoods(goodsId, goodsAmount, goodsRemain);
-//		//更新是否成功
-//		if (changeLine != 0) {
-//			return true;
-//		}
-//		return false;
-//	}
-
-//	@Override
-//	public boolean deleteGoods(String goodsId) {
-//		// TODO Auto-generated method stub
-//		//删除数据
-//		int changeLine=goodsMapper.deleteGoods(goodsId);
-//		//删除是否成功
-//		if (changeLine != 0) {
-//			return true;
-//		}
-//		return false;
-//	}
-
 }

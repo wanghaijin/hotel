@@ -23,7 +23,7 @@ public class GoodsOrdersMapperTest {
 	@Test
 	public void testSelectGoodsOrders() {
 //		fail("Not yet implemented");
-		List<GoodsOrders> goodsOrders=goodsOrdersMapper.selectGoodsOrders(null);
+		List<GoodsOrders> goodsOrders=goodsOrdersMapper.selectGoodsOrders(null,null,null);
 		System.out.println(goodsOrders);
 	}
 

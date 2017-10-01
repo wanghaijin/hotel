@@ -10,7 +10,5 @@ public interface GoodsMapper {
 	
 	public List<Goods> selectGoods(@Param("goodsName")String goodsName);
 	public int insertGoods(@Param("goods")Goods goods);
-//	public int updateGoods(@Param("goodsId")String goodsId,@Param("goodsAmount")String goodsAmount,@Param("goodsRemain")String goodsRemain);
-//	public int deleteGoods(@Param("goodsName")String goodsName);
 
 }

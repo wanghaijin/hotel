@@ -17,7 +17,7 @@
 		from
 		room,roomsize
 		where
-		room.`Room_Size`=roomsize.`Size_Id`
+		room.room_size=roomsize.size_id
 		<if test="type != null and type != ''">
 			and Room_Type=#{type}
 		</if>
@@ -29,8 +29,8 @@
 		room
 		SET
 		Room_Type = #{type}
-		WHERE Room_Num =
-		#{number};
+		WHERE 
+		Room_Num = #{number};
 	</update>
 
 	<insert id="insertRoom">

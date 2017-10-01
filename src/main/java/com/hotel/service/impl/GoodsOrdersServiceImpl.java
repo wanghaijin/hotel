@@ -17,19 +17,8 @@ public class GoodsOrdersServiceImpl implements GoodsOrdersService {
 	private GoodsOrdersMapper goodsOrdersMapper;
 
 	@Override
-	public PageInfo<GoodsOrders> selectGoodsOrders(String goodsId,int pageNum,int pageSize) {
-		// TODO Auto-generated method stub
-		
-		List<GoodsOrders> goodsOrders=goodsOrdersMapper.selectGoodsOrders(goodsId);
-		PageHelper.startPage(pageNum,pageSize);
-		return new PageInfo<GoodsOrders>(goodsOrders);
-//		return goodsOrders;
-	}
-
-	@Override
 	public boolean insertGoodsOrders(GoodsOrders goodsOrders) {
 		// TODO Auto-generated method stub
-//		goodsService.insertGoods(goodsName);
 		int changeLine=goodsOrdersMapper.insertGoodsOrders(goodsOrders);
 		if (changeLine != 0) {
 			return true;
@@ -45,6 +34,24 @@ public class GoodsOrdersServiceImpl implements GoodsOrdersService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public PageInfo<GoodsOrders> selectGoodsOrders(int pageNum,int pageSize,String goodsId, String dateStart, String dateEnd) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(pageNum,pageSize);
+//		if (!goodsName.trim().equals(null)) {
+//			goodsName="%"+goodsName.trim()+"%";
+//		}
+		if ((!dateStart.equals(null))&&(!dateStart.equals(""))) {
+			dateStart+=" 00:00:00";
+		}
+		if ((!dateEnd.equals(null))&&(!dateEnd.equals(""))) {
+			dateEnd+=" 23:59:59";
+		}
+		List<GoodsOrders> goodsOrders=goodsOrdersMapper.selectGoodsOrders(goodsId.trim(), dateStart, dateEnd);
+		
+		return new PageInfo<GoodsOrders>(goodsOrders);
 	}
 
 }

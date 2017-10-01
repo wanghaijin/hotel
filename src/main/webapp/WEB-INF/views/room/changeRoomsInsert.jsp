@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
+<head>
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
@@ -12,7 +13,7 @@
 <!--显示插入反馈信息  -->
 	<h3>
 		<c:if test="${string != null}">
-			${string }
+			<h3><span class="label label-success">${string }</span></h3>
 		</c:if>
 	</h3>
 	<!--数据表格  -->
@@ -34,7 +35,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<button type="submit">添加房间</button>
+			<button type="submit" class="form-control btn btn-primary">添加房间</button>
 		</div>
 	</form>
 </div>

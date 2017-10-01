@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.UserMapper">
+<!-- 
+	<resultMap type="User" id="resultMapUser" autoMapping="true">
+		<id property="userId" column="user_id" />
+		<id property="roomOrdersId" column="room_orders_id" />
+		<association property="roomOrders" javaType="RoomOrders"
+			autoMapping="true">
+			<id property="roomOrdersId" column="room_orders_id" />
+			<association property="room" javaType="Room" autoMapping="true">
+			<id property="roomNum" column="room_num" />
+			<association property="roomSize" javaType="RoomSize"
+				autoMapping="true">
+				<id property="sizeId" column="Size_Id" />
+				<result property="sizeName" column="Size_Name" />
+			</association>
+		</association>
+		</association>
+	</resultMap>
+	<select id="selectUser" resultMap="resultMapUser">
+		SELECT
+		*
+		FROM
+		user,room_orders,room,room_size
+		where
+		user.room_orders_id=room_orders.room_orders_id
+		<if test="ordersType != null and ordersType != ''">
+			and room_orders.orders_type=#{ordersType}
+		</if>
+		<if test="userId != null and userId != ''">
+			and user_id=#{userId}
+		</if>
+		<if test="roomNum != null and roomNum != ''">
+			and room_orders.room_num=#{roomNum}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			and
+			unix_timestamp(room_orders.room_orders_start_time) &gt;= unix_timestamp(#{startTime})
+		</if>
+		<if test="endTime != null and endTime != ''">
+			AND
+			unix_timestamp(room_orders.room_orders_start_time) &lt;= unix_timestamp(#{endTime})
+		</if>
+	</select> -->
+
+	<insert id="insertUser">
+		INSERT INTO user (
+		user_id,
+		user_name,
+		room_orders_id,
+		user_tel,
+		user_nation
+		)
+		VALUES
+		(
+		#{user.userId},
+		#{user.userName},
+		#{user.roomOrdersId},
+		#{user.userTel},
+		#{user.userNation}
+		);
+	</insert>
+</mapper>

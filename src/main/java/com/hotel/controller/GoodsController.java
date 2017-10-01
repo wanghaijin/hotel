@@ -50,19 +50,20 @@ public class GoodsController {
 			String info="此条记录以导入账本,可以继续导入";
 			model.addAttribute("info", info);
 		}
-//		List<GoodsOrders>goodsOrders= goodsOrdersService.selectGoodsOrders(goodsId);
-//		model.addAttribute("goodsOrders", goodsOrders);
 		return "goods/goodsOrders";
 	}
 	
 	//改变商品状态或者添加商品
 	@RequestMapping(value="goodsOrdersShow")
-	public String goodsChange(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="10")int pageSize,
+	public String goodsChange(@RequestParam(value="dateStart",defaultValue="")String dateStart,
+			@RequestParam(value="dateEnd",defaultValue="")String dateEnd,
+			@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,
+            @RequestParam(value = "pageSize",defaultValue = "5")Integer pageSize,
 			@RequestParam(value="goodsId",defaultValue="")String goodsId,Model model) {
-		PageInfo<GoodsOrders> pageInfo=goodsOrdersService.selectGoodsOrders(goodsId, pageNum, pageSize);
-		model.addAttribute("pageInfo", pageInfo);
-//		model.addAttribute("goodsOrders", goodsOrdersService.selectGoodsOrders(goodsId, pageNum, pageSize));
+		PageInfo<GoodsOrders> goodsOrders=goodsOrdersService.selectGoodsOrders(pageNum,pageSize,goodsId.trim(),dateStart.trim(),dateEnd.trim());
+		List<Goods> goods=goodsService.selectGoods("");
+		model.addAttribute("goods", goods);
+		model.addAttribute("pagehelper", goodsOrders);
 		return "goods/goodsOrdersShow";
 	}
 	

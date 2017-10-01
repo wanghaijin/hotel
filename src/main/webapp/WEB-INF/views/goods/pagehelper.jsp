@@ -1,35 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>分页脚标</title>
+    <title>Title</title>
+    <link type="text/css" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-<div class="message">
-        共<i class="blue">${pageInfo.total}</i>条记录,
-        当前显示第&nbsp;<i class="blue">${pageInfo.pageNum}/${pageInfo.pages}</i>&nbsp;页
+    <div class="message">
+        共<i class="blue">${pagehelper.total}</i>条记录,
+        当前显示第&nbsp;<i class="blue">${pagehelper.pageNum}/${pagehelper.pages}</i>&nbsp;页
     </div>
     <div style="text-align: center">
         <ul class="pagination">
-            <c:if test="${!pageInfo.isFirstPage}">
-                <li><a href="goodsOrdersShow?pageNum=${pageInfo.firstPage}">首页</a></li>
-                <li><a href="goodsOrdersShow?pageNum=${pageInfo.prePage}">上一页</a></li>
+            <c:if test="${!pagehelper.isFirstPage}">
+                <li><a id="${pagehelper.firstPage}" href="javascript:void(0);" onclick="pageShow(this)">首页</a></li>
+                <li><a id="${pagehelper.prePage}" href="javascript:void(0);" onclick="pageShow(this)">上一页</a></li>
             </c:if>
-            <c:forEach items="${pageInfo.navigatepageNums}" var="navigatepageNum">
+            <c:forEach items="${pagehelper.navigatepageNums}" var="navigatepageNum">
 
-                <c:if test="${navigatepageNum==pageInfo.pageNum}">
-                    <li class="active"><a href="goodsOrdersShow?pageNum=${navigatepageNum}">${navigatepageNum}</a></li>
+                <c:if test="${navigatepageNum==pagehelper.pageNum}">
+                    <li class="active"><a id="${navigatepageNum}" href="javascript:void(0);" onclick="pageShow(this)">${navigatepageNum}</a></li>
                 </c:if>
-                <c:if test="${navigatepageNum!=pageInfo.pageNum}">
-                    <li><a href="goodsOrdersShow?pageNum=${navigatepageNum}">${navigatepageNum}</a></li>
+                <c:if test="${navigatepageNum!=pagehelper.pageNum}">
+                    <li><a id="${navigatepageNum}" href="javascript:void(0);" onclick="pageShow(this)">${navigatepageNum}</a></li>
                 </c:if>
             </c:forEach>
-            <c:if test="${!pageInfo.isLastPage}">
-                <li><a href="goodsOrdersShow?pageNum=${pageInfo.nextPage}">下一页</a></li>
-                <li><a href="goodsOrdersShow?pageNum=${pageInfo.lastPage}">最后一页</a></li>
+            <c:if test="${!pagehelper.isLastPage}">
+                <li><a id="${pagehelper.nextPage}" href="javascript:void(0);" onclick="pageShow(this)">下一页</a></li>
+                <li><a id="${pagehelper.lastPage}" href="javascript:void(0);" onclick="pageShow(this)">最后一页</a></li>
             </c:if>
         </ul>
     </div>
+    
+    <script type="text/javascript">
+    	function pageShow(obj) {
+    		var preUrl='goodsOrdersShow?pageNum=';
+			var sufUrl='&pageSize=${param.pageSize}&goodsId=${param.goodsId}&dateStart=${param.dateStart}&dateEnd=${param.dateEnd}';
+			var trueUrl=preUrl+obj.id+sufUrl;
+			
+			window.location.href=trueUrl;
+		}
+    </script>
 </body>
 </html>

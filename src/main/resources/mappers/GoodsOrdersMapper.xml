@@ -20,10 +20,16 @@
 		where
 		goods_orders.goods_id=goods.goods_id
 		<if test="goodsId != null and goodsId != ''">
-			and goods_id=#{goodsId} 
+			and goods_orders.goods_id = #{goodsId} 
+		</if>
+		<if test="dateStart != null and dateStart != ''">
+			and unix_timestamp(goods_orders_time) &gt;= unix_timestamp(#{dateStart})
+		</if>
+		<if test="dateEnd != null and dateEnd != ''">
+			and unix_timestamp(goods_orders_time) &lt;= unix_timestamp(#{dateEnd})
 		</if>
 		order by
-		goods_orders_time
+		goods_orders_time DESC
 	</select>
 
 	<insert id="insertGoodsOrders">

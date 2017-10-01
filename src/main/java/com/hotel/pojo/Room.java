@@ -8,10 +8,12 @@ public class Room {
 	//房间状态
 	//1-空闲\2-入住\3-预定\4-清洁
 	private int roomType;
+	//房间订单信息
 
 	//房型
 	private RoomSize roomSize;
 
+	
 	public String getRoomNum() {
 		return roomNum;
 	}
@@ -31,11 +33,8 @@ public class Room {
 	public void setRoomSize(RoomSize roomSize) {
 		this.roomSize = roomSize;
 	}
-	@Override
-	public String toString() {
-		return "Room [roomNum=" + roomNum + ", roomType=" + roomType + ", roomSize=" + roomSize + "]";
-	}
 
+	
 	
 	
 	

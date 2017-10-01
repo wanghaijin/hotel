@@ -9,7 +9,5 @@ public interface GoodsService {
 	
 	public List<Goods> selectGoods(String goodsName);
 	public boolean insertGoods(String goodsName);
-//	public boolean updateGoods(String goodsId,String goodsAmount,String goodsRemain);
-//	public boolean deleteGoods(String goodsId);
 
 }

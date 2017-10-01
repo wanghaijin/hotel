@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.RoomOrdersMapper">
+	<resultMap type="RoomOrders" id="resultRoomOrders"
+		autoMapping="true">
+		<id property="roomOrdersId" column="room_orders_id" />
+		<association property="room" javaType="Room" autoMapping="true">
+			<id property="roomNum" column="room_num" />
+			<association property="roomSize" javaType="RoomSize"
+				autoMapping="true">
+				<id property="sizeId" column="Size_Id" />
+				<result property="sizeName" column="Size_Name" />
+			</association>
+		</association>
+		<collection property="users" ofType="User" javaType="list" autoMapping="true">
+			<id property="userId" column="user_id"/>
+		</collection>
+	</resultMap>
+	<select id="selectRoomOrders" resultMap="resultRoomOrders">
+		select
+		*
+		from
+		room_orders,room,roomsize,user
+		where
+		room_orders.room_num=room.room_num
+		and
+		room.room_size=roomsize.size_id
+		and
+		room_orders.room_orders_id=user.room_orders_id
+		<if test="userId != null and userId != ''">
+			and user.user_id=#{userId}
+		</if>
+		<if test="roomOrders.roomNum != null and roomOrders.roomNum != ''">
+			and room_orders.room_num=#{roomOrders.roomNum}
+		</if>
+		<if test="roomOrders.ordersType != null and roomOrders.ordersType != ''">
+			and orders_type=#{roomOrders.ordersType}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			and
+			unix_timestamp(room_orders_start_time) &gt;= unix_timestamp(#{startTime})
+		</if>
+		<if test="endTime != null and endTime != ''">
+			AND
+			unix_timestamp(room_orders_start_time) &lt;= unix_timestamp(#{endTime})
+		</if>
+		order by
+		room_orders_start_time DESC
+	</select>
+
+	<!-- <select id="selectRoomOrdersByTime" resultMap="resultRoomOrders"> select 
+		* from room_orders where where room_orders.room_num=room.room_num and room.room_size=roomsize.size_id 
+		and room_orders_start_time &gt;= #{startTime} AND room_orders_start_time 
+		&lt;= #{endTime} </select> -->
+
+	<insert id="insertRoomOrders"  parameterType="RoomOrders" useGeneratedKeys="true" keyProperty="roomOrders.roomOrdersId">
+		INSERT INTO room_orders (
+		room_num,
+		room_orders_start_time,
+		orders_type,
+		room_orders_num,
+		room_price,
+		room_orders_price
+		)
+		VALUES
+		(
+		#{roomOrders.roomNum},
+		NOW(),
+		#{roomOrders.ordersType},
+		#{roomOrders.roomOrdersNum},
+		#{roomOrders.roomPrice},
+		#{roomOrders.roomOrdersPrice}
+		);
+	</insert>
+	<update id="updateRoomOrders">
+		UPDATE
+		room_orders
+		SET
+		orders_type
+		= #{ordersType},
+		room_orders_end_time=NOW()
+		WHERE
+		room_orders_id = #{roomOrdersId};
+	</update>
+
+	<delete id="deleteRoomOrders">
+		DELETE
+		FROM
+		room_orders
+		WHERE room_orders_id =
+		#{roomOrdersId};
+	</delete>
+</mapper>

@@ -8,7 +8,7 @@ import com.hotel.pojo.GoodsOrders;
 
 public interface GoodsOrdersMapper {
 	//查询商品订单
-	public List<GoodsOrders> selectGoodsOrders(@Param("goodsId")String goodsId);
+	public List<GoodsOrders> selectGoodsOrders(@Param("goodsId")String goodsId,@Param("dateStart")String dateStart,@Param("dateEnd")String dateEnd);
 	//生成商品订单
 	public int insertGoodsOrders(@Param("goodsOrders")GoodsOrders goodsOrders);
 	//删除商品订单

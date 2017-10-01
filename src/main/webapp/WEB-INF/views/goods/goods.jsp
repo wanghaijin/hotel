@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<head>
  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/iframe.css">
@@ -13,8 +14,8 @@
 	<div id="main-container">
 		<div id="sidebar" class="col-md-2 column">
 			<ul class="nav nav-pills nav-stacked" id="mytab">
-				<li class="active"><a href="javascript:void(0);" onclick="tab(this);" id="goodsOrders">销售额</a></li>
-				<li class=""><a href="javascript:void(0);" onclick="tab(this);" id="goodsOrdersShow">商品添加</a></li>
+				<li class="active"><a href="javascript:void(0);" onclick="tab(this);" id="goodsOrders">账单添加</a></li>
+				<li class=""><a href="javascript:void(0);" onclick="tab(this);" id="goodsOrdersShow">账单显示</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10 column">

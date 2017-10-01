@@ -20,8 +20,8 @@ public class GoodsOrdersServiceTest {
 
 	@Test
 	public void testSelectGoodsOrders() {
-//		fail("Not yet implemented");
-		System.out.println(goodsOrdersService.selectGoodsOrders(null, 1, 10));
+		fail("Not yet implemented");
+//	
 		
 	}
 

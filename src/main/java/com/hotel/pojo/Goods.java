@@ -5,10 +5,7 @@ public class Goods {
 	private int goodsId;
 	//商品名字
 	private String goodsName;
-//	//商品总数量
-//	private int goodsAmount;
-//	//商品剩余数量
-//	private int goodsRemain;
+
 	public int getGoodsId() {
 		return goodsId;
 	}

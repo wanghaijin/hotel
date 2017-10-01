@@ -17,10 +17,9 @@ public class RoomServiceImpl implements RoomService{
 
 	@Override
 	public List<Room> selectRoom(String roomTypeId) {
+		//需要辨别查看的是否为已退房的房间订单
 		// TODO Auto-generated method stub
-		int typeId=Integer.valueOf(roomTypeId);
-		List<Room> rooms=roomMapper.selectRoom(typeId);
-//		System.out.println(roomType2);
+		List<Room> rooms=roomMapper.selectRoom(roomTypeId);
 		return rooms;
 	}
 
@@ -49,6 +48,12 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public boolean insertRoom(String roomNum, String roomSize) {
 		// TODO Auto-generated method stub
+		List<Room> rooms=roomMapper.selectRoom(null);
+		for(Room room:rooms) {
+			if(roomNum.equals(room.getRoomNum())) {
+				return false;
+			}
+		}
 		Room room=new Room();
 		RoomSize roomSize2=new RoomSize();
 		roomSize2.setSizeId(Integer.valueOf(roomSize.trim()));

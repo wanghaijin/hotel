@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<head>
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
@@ -13,7 +12,7 @@
 <body>
 
 	<c:if test="${!rooms.isEmpty()}">
-	<h4>共有<span class="label label-danger">${rooms.size()}</span>间房间正在维护</h4>
+	<h3>共有<span class="label label-danger">${rooms.size()}</span>间房间正在维护</h3>
 		<table class="table">
 			<thead>
 				<tr>
@@ -35,7 +34,7 @@
 		</table>
 	</c:if>
 	<c:if test="${rooms.isEmpty()}">
-		<h4>暂无房间需要维护</h4>
+		<h3><span class="label label-danger">暂无房间需要维护</span></h3>
 	</c:if>
 
 	<script src="resources/js/jquery.min.js"></script>

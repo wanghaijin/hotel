@@ -11,20 +11,28 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.hotel.pojo.Room;
+import com.hotel.pojo.RoomOrders;
 import com.hotel.pojo.RoomSize;
 
 public class RoomMapperTest {
 	private RoomMapper roomMapper;
+	private RoomOrdersMapper roomOrdersMapper;
 
 	@Before
 	public void setUp() throws Exception {
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");
-		roomMapper=context.getBean(RoomMapper.class);
+		roomOrdersMapper=context.getBean(RoomOrdersMapper.class);
+		
 		
 	}
 
 	@Test
 	public void testSelectRoom() {
+		String string="123";
+		String string2=string.substring(0, 2);
+		System.out.println(string.substring(0, 2));
+//		List<RoomOrders> roomOrders=roomOrdersMapper.selectRoomOrders(null, null, null);
+//		System.out.println(roomOrders);
 //		roomMapper.selectRoom("1");
 //		fail("Not yet implemented");
 //		List<Room> rooms=roomMapper.selectRoom("", "1", "0");
